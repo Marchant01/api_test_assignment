@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "1de4e2f4-eb0f-457d-a38b-246493a8db7e",
+		"name": "API Övningar",
+		"description": "Tester för API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43694932",
+		"_collection_link": "https://celvinmarchant-7008532.postman.co/workspace/Celvin-Marchant's-Workspace~ab723653-6d49-4ece-8cf9-a7dac74b0605/collection/43694932-1de4e2f4-eb0f-457d-a38b-246493a8db7e?action=share&source=collection_link&creator=43694932"
+	},
+	"item": [
+		{
+			"name": "GET Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test \", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array \", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array\", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Product",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products/1",
+				"description": "Requests a single product based on id"
+			},
+			"response": []
+		}
+	]
+}

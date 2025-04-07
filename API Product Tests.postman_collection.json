@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "9e75bdaf-1f74-4ec5-b572-4612c2e3b8aa",
+		"name": "API Product Tests",
+		"description": "CRUD testing for products.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43694932",
+		"_collection_link": "https://celvinmarchant-7008532.postman.co/workspace/Celvin-Marchant's-Workspace~ab723653-6d49-4ece-8cf9-a7dac74b0605/collection/43694932-9e75bdaf-1f74-4ec5-b572-4612c2e3b8aa?action=share&source=collection_link&creator=43694932"
+	},
+	"item": [
+		{
+			"name": "DELETE User Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logout status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{local_host}}/login"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Admin Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login as admin test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local_host}}/login"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array \", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Test if the product is deleted \", function () {\r",
+							"    pm.expect(responseData.length == 28).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products",
+				"description": "Requests a single product based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "POST New Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST new product test\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Playstation 5\",\r\n    \"price\": 6000,\r\n    \"categoryId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local_host}}/products"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array \", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Test if the product is deleted \", function () {\r",
+							"    pm.expect(responseData.length == 29).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products",
+				"description": "Requests a single product based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "GET New Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products/31"
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 9000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local_host}}/products/31"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array \", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Test if the product is deleted \", function () {\r",
+							"    pm.expect(responseData.length == 29).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products",
+				"description": "Requests a single product based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{local_host}}/products/31"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Response contains array \", function () {\r",
+							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"var responseData = pm.response.json();\r",
+							"pm.test(\"Test if the product is deleted \", function () {\r",
+							"    pm.expect(responseData.length == 28).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{local_host}}/products",
+				"description": "Requests a single product based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE User Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logout status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{local_host}}/login"
+			},
+			"response": []
+		}
+	]
+}
