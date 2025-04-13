@@ -19,7 +19,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"let responseData = pm.response.json();\r",
+							"var responseData = pm.response.json();\r",
 							"pm.test(\"Response contains array \", function () {\r",
 							"    pm.expect(Array.isArray(responseData)).to.be.true;\r",
 							"});"
@@ -86,7 +86,7 @@
 						"exec": [
 							"pm.test(\"Status test\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"})"
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -101,6 +101,29 @@
 				"header": [],
 				"url": "{{local_host}}/products/1",
 				"description": "Requests a single product based on id"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE User Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logout status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{local_host}}/login"
 			},
 			"response": []
 		}
