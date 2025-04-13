@@ -30,7 +30,7 @@ jobs:
         run: dotnet build
 
       - name: Start server
-        run: dotnet run --project server
+        run: cd server && nohup dotnet run &
 
       - name: Run get products/ categories API-tests
         run: newman run api-tests.json -e shop-tester.dev_environment.json
