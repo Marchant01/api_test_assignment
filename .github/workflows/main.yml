@@ -34,3 +34,6 @@ jobs:
 
       - name: Run get products/ categories API-tests
         run: newman run api-tests.json -e shop-tester.dev_environment.json
+        
+      - name: Run product/ session API-tests
+        run: newman run api_product-tests.json -e shop-tester.dev_environment.json
