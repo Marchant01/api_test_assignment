@@ -1,0 +1,36 @@
+name: shoptester - API tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+# name of the job
+  api_tests:
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.x'    
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Restore dependencies
+        run: dotnet restore
+        
+      - name: Build solution
+        run: dotnet build
+
+      - name: Start server
+        run: dotnet run --project server
+
+      - name: Run get products/ categories API-tests
+        run: newman run api-tests.json -e shop-tester.dev_environment.json
